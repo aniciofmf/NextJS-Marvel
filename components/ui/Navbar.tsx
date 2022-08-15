@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import { Spacer, Text, useTheme } from "@nextui-org/react";
+import NextLink from "next/link";
+import { Spacer, Text, useTheme, Link } from "@nextui-org/react";
 import marveldp from "../../images/marveldp.png";
 
 export const Navbar = () => {
@@ -19,17 +20,25 @@ export const Navbar = () => {
 				caretColor: "transparent",
 			}}
 		>
-			<Image src={marveldp} width={70} height={60} style={{ marginLeft: "0px", borderRadius: "40px" }} />
+			<Image alt="Marvel" src={marveldp} width={70} height={60} style={{ marginLeft: "0px", borderRadius: "40px" }} />
 
-			<Text color="white" h2 style={{ marginLeft: "10px", marginTop: "10px" }}>
-				MARVEL
-			</Text>
+			<NextLink href="/" passHref>
+				<Link>
+					<Text color="white" h2 style={{ marginLeft: "10px", marginTop: "10px" }}>
+						MARVEL
+					</Text>
+				</Link>
+			</NextLink>
 
 			<Spacer css={{ flex: 1 }} />
 
-			<Text color="white" h2 style={{ marginRight: "10px", marginTop: "10px" }}>
-				FAVS
-			</Text>
+			<NextLink href="/favs" passHref>
+				<Link>
+					<Text color="white" h2 style={{ marginRight: "10px", marginTop: "10px" }}>
+						FAVS
+					</Text>
+				</Link>
+			</NextLink>
 		</div>
 	);
 };

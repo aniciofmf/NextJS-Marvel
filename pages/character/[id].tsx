@@ -1,6 +1,8 @@
 import React from "react";
 import { NextPage, GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
+import { Grid, Card, Text, Button, Image, Container } from "@nextui-org/react";
+
 import { marvelApi } from "../../api";
 import { Layout } from "../../components/layouts";
 import { MarvelCharacterResponse, Character } from "../../interfaces/marvelCharacterResponse.interface";
@@ -10,7 +12,42 @@ const CharacterPage: NextPage<{ character: Character }> = ({ character }) => {
 
 	return (
 		<Layout title={character.name}>
-			<></>
+			<Grid.Container css={{ marginTop: "5px" }} gap={2}>
+				<Grid xs={12} sm={4}>
+					<Card isHoverable css={{ padding: "30px" }}>
+						<Card.Body>
+							<Card.Image
+								src={character.thumbnail.path + "." + character.thumbnail.extension}
+								alt={character.name}
+								width="100%"
+								height={200}
+							/>
+						</Card.Body>
+					</Card>
+				</Grid>
+
+				<Grid xs={12} sm={8}>
+					<Card>
+						<Card.Header css={{ display: "flex", justifyContent: "space-between" }}>
+							<Text h1 transform="capitalize">
+								{character.name.toUpperCase()}
+							</Text>
+
+							<Button>ADD TO FAVS</Button>
+						</Card.Header>
+
+						<Card.Body>
+							<Text size={30}>COMICS:</Text>
+
+							<Container direction="row" display="flex" gap={0}></Container>
+
+							<Text size={30}>SERIES:</Text>
+
+							<Container direction="row" display="flex" gap={0}></Container>
+						</Card.Body>
+					</Card>
+				</Grid>
+			</Grid.Container>
 		</Layout>
 	);
 };
