@@ -10,7 +10,7 @@ const Home: NextPage<{ characters: Character[] }> = ({ characters }) => {
 		<Layout title="Home">
 			<Grid.Container gap={2} justify="flex-start">
 				{characters.map((character) => (
-					<CharacaterCard character={character} />
+					<CharacaterCard key={character.id} character={character} />
 				))}
 			</Grid.Container>
 		</Layout>
