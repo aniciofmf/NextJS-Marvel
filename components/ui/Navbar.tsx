@@ -26,8 +26,8 @@ export const Navbar = () => {
 
 			<Spacer css={{ flex: 1 }} />
 
-			<Text color="white" h2>
-				FAV
+			<Text color="white" h2 style={{ marginRight: "10px", marginTop: "10px" }}>
+				FAVS
 			</Text>
 		</div>
 	);
