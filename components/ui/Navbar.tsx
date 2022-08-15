@@ -16,6 +16,7 @@ export const Navbar = () => {
 				justifyContent: "start",
 				padding: "0px 10px",
 				backgroundColor: "#ed1d24",
+				caretColor: "transparent",
 			}}
 		>
 			<Image src={marveldp} width={70} height={60} style={{ marginLeft: "0px", borderRadius: "40px" }} />
