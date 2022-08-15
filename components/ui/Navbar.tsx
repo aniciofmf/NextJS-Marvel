@@ -1,5 +1,7 @@
-import { Spacer, Text, useTheme } from "@nextui-org/react";
 import React from "react";
+import { Spacer, Text, useTheme } from "@nextui-org/react";
+import marveldp from "../../images/marveldp.png";
+import Image from "next/image";
 
 export const Navbar = () => {
 	const { theme } = useTheme();
@@ -16,11 +18,14 @@ export const Navbar = () => {
 				backgroundColor: "#ed1d24",
 			}}
 		>
-			<Text color="white" h2>
+			<Image src={marveldp} width={70} height={60} style={{ marginLeft: "0px", borderRadius: "40px" }} />
+
+			<Text color="white" h2 style={{ marginLeft: "10px", marginTop: "10px" }}>
 				MARVEL
 			</Text>
 
-			<Spacer />
+			<Spacer css={{ flex: 1 }} />
+
 			<Text color="white" h2>
 				FAV
 			</Text>
