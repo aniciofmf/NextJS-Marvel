@@ -1,4 +1,4 @@
-import { Text, useTheme } from "@nextui-org/react";
+import { Spacer, Text, useTheme } from "@nextui-org/react";
 import React from "react";
 
 export const Navbar = () => {
@@ -14,12 +14,15 @@ export const Navbar = () => {
 				justifyContent: "start",
 				padding: "0px 10px",
 				backgroundColor: "#ed1d24",
-				fontFamily: "Marvel",
-				letterSpacing: 0,
 			}}
 		>
-			<Text color="white" h1>
+			<Text color="white" h2>
 				MARVEL
+			</Text>
+
+			<Spacer />
+			<Text color="white" h2>
+				FAV
 			</Text>
 		</div>
 	);

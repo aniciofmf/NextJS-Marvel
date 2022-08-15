@@ -5,3 +5,12 @@
 	font-variant: normal;
 	src: url(/fonts/MarvelRegular.ttf);
 }
+
+body {
+	font-family: "Marvel", "Segoe UI", "Roboto";
+}
+
+h1,
+h2 {
+	letter-spacing: 0.01em;
+}
