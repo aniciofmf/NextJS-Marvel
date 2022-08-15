@@ -1,7 +1,7 @@
 import React from "react";
+import Image from "next/image";
 import { Spacer, Text, useTheme } from "@nextui-org/react";
 import marveldp from "../../images/marveldp.png";
-import Image from "next/image";
 
 export const Navbar = () => {
 	const { theme } = useTheme();

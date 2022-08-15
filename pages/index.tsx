@@ -1,12 +1,18 @@
 import { GetStaticProps, NextPage } from "next";
+import { Card, Grid, Text, Row } from "@nextui-org/react";
 import { Layout } from "../components/layouts";
 import { marvelApi } from "../api/marvelApi";
-import { MarvelResponse } from "../interfaces/marvelResponse.interface";
+import { MarvelResponse, Character } from "../interfaces/marvelResponse.interface";
+import { CharacaterCard } from "../components/marvel/CharacaterCard";
 
-const Home: NextPage = (props) => {
+const Home: NextPage<{ characters: Character[] }> = ({ characters }) => {
 	return (
 		<Layout title="Home">
-			<ul></ul>
+			<Grid.Container gap={2} justify="flex-start">
+				{characters.map((character) => (
+					<CharacaterCard character={character} />
+				))}
+			</Grid.Container>
 		</Layout>
 	);
 };
