@@ -1,5 +1,5 @@
 import { GetStaticProps, NextPage } from "next";
-import { Card, Grid, Text, Row } from "@nextui-org/react";
+import { Grid } from "@nextui-org/react";
 import { Layout } from "../components/layouts";
 import { marvelApi } from "../api/marvelApi";
 import { MarvelResponse, Character } from "../interfaces/marvelResponse.interface";
