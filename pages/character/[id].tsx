@@ -33,17 +33,31 @@ const CharacterPage: NextPage<{ character: Character }> = ({ character }) => {
 								{character.name.toUpperCase()}
 							</Text>
 
-							<Button>ADD TO FAVS</Button>
+							<Button bordered css={{ fontSize: "20px" }}>
+								ADD TO FAVS
+							</Button>
 						</Card.Header>
 
 						<Card.Body>
 							<Text size={30}>COMICS:</Text>
 
-							<Container direction="row" display="flex" gap={0}></Container>
+							<Container direction="row" display="flex" gap={0}>
+								<ul>
+									{character.comics.items.map((comic) => (
+										<li>{comic.name.toUpperCase()}</li>
+									))}
+								</ul>
+							</Container>
 
 							<Text size={30}>SERIES:</Text>
 
-							<Container direction="row" display="flex" gap={0}></Container>
+							<Container direction="row" display="flex" gap={0}>
+								<ul>
+									{character.series.items.map((serie) => (
+										<li>{serie.name.toUpperCase()}</li>
+									))}
+								</ul>
+							</Container>
 						</Card.Body>
 					</Card>
 				</Grid>
