@@ -1,6 +1,6 @@
 const LOCALSTORAGE_LABEL = "favs";
 
-const toogleFavs = (id: number) => {
+const toogleFavs = (id: number, img: string) => {
 	let favs: number[] = JSON.parse(localStorage.getItem(LOCALSTORAGE_LABEL) || "[]");
 
 	if (favs.includes(id)) {
@@ -10,6 +10,7 @@ const toogleFavs = (id: number) => {
 	}
 
 	localStorage.setItem(LOCALSTORAGE_LABEL, JSON.stringify(favs));
+	localStorage.setItem(`image-${id}`, JSON.stringify(img));
 };
 
 const exists = (id: number): boolean => {
@@ -24,4 +25,8 @@ const characters = (): number[] => {
 	return JSON.parse(localStorage.getItem(LOCALSTORAGE_LABEL) || "[]");
 };
 
-export default { toogleFavs, exists, characters };
+const getItem = (item: string): any => {
+	return JSON.parse(localStorage.getItem(item) || "[]");
+};
+
+export default { toogleFavs, exists, characters, getItem };

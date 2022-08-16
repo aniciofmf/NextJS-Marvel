@@ -11,7 +11,8 @@ const CharacterPage: NextPage<{ character: Character }> = ({ character }) => {
 	const [isInFavs, setInFavs] = useState(storageFavs.exists(character.id));
 
 	const handleFav = () => {
-		storageFavs.toogleFavs(character.id);
+		let characterImg = character.thumbnail.path + "." + character.thumbnail.extension;
+		storageFavs.toogleFavs(character.id, characterImg);
 		setInFavs(!isInFavs);
 	};
 
