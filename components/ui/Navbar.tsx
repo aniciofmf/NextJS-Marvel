@@ -1,12 +1,11 @@
 import React from "react";
 import Image from "next/image";
 import NextLink from "next/link";
-import { Spacer, Text, useTheme, Link } from "@nextui-org/react";
+import { Spacer, Text, Link } from "@nextui-org/react";
+
 import marveldp from "../../images/marveldp.png";
 
 export const Navbar = () => {
-	const { theme } = useTheme();
-
 	return (
 		<div
 			style={{

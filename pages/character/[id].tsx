@@ -1,20 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NextPage, GetStaticPaths, GetStaticProps } from "next";
-import { useRouter } from "next/router";
-import { Grid, Card, Text, Button, Image, Container } from "@nextui-org/react";
+import { Grid, Card, Text, Button, Container } from "@nextui-org/react";
 
 import { marvelApi } from "../../api";
 import { Layout } from "../../components/layouts";
 import { MarvelCharacterResponse, Character } from "../../interfaces/marvelCharacterResponse.interface";
+import { storageFavs } from "../../utils";
 
 const CharacterPage: NextPage<{ character: Character }> = ({ character }) => {
-	const router = useRouter();
+	const [isInFavs, setInFavs] = useState(storageFavs.exists(character.id));
+
+	const handleFav = () => {
+		storageFavs.toogleFavs(character.id);
+		setInFavs(!isInFavs);
+	};
 
 	return (
 		<Layout title={character.name}>
 			<Grid.Container css={{ marginTop: "5px" }} gap={2}>
 				<Grid xs={12} sm={4}>
-					<Card isHoverable css={{ padding: "30px" }}>
+					<Card isHoverable css={{ padding: "20px" }}>
 						<Card.Body>
 							<Card.Image
 								src={character.thumbnail.path + "." + character.thumbnail.extension}
@@ -29,32 +34,32 @@ const CharacterPage: NextPage<{ character: Character }> = ({ character }) => {
 				<Grid xs={12} sm={8}>
 					<Card>
 						<Card.Header css={{ display: "flex", justifyContent: "space-between" }}>
-							<Text h1 transform="capitalize">
+							<Text h2 transform="capitalize">
 								{character.name.toUpperCase()}
 							</Text>
 
-							<Button bordered css={{ fontSize: "20px" }}>
-								ADD TO FAVS
+							<Button bordered ghost={isInFavs} css={{ fontSize: "19px" }} onPress={handleFav}>
+								{isInFavs ? "MARKED AS FAVORITE" : "ADD TO FAVORITES"}
 							</Button>
 						</Card.Header>
 
 						<Card.Body>
-							<Text size={30}>COMICS:</Text>
+							<Text size={25}>COMICS:</Text>
 
 							<Container direction="row" display="flex" gap={0}>
 								<ul>
 									{character.comics.items.map((comic) => (
-										<li>{comic.name.toUpperCase()}</li>
+										<li key={comic.resourceURI}>{comic.name.toUpperCase()}</li>
 									))}
 								</ul>
 							</Container>
 
-							<Text size={30}>SERIES:</Text>
+							<Text size={25}>SERIES:</Text>
 
 							<Container direction="row" display="flex" gap={0}>
 								<ul>
 									{character.series.items.map((serie) => (
-										<li>{serie.name.toUpperCase()}</li>
+										<li key={serie.resourceURI}>{serie.name.toUpperCase()}</li>
 									))}
 								</ul>
 							</Container>
