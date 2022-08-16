@@ -133,7 +133,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 		reqdata = null;
 	}
 
-	/* if (!reqdata) {
+	if (!reqdata) {
 		return {
 			redirect: {
 				destination: "/",
@@ -141,10 +141,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 			},
 		};
 	}
- */
+
 	return {
 		props: {
-			character: reqdata?.data.data.results[0],
+			character: reqdata.data.data.results[0],
 		},
 		revalidate: 3600,
 	};
