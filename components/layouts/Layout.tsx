@@ -8,6 +8,8 @@ interface Props {
 	title?: string;
 }
 
+const origin = typeof window === "undefined" ? "" : window.location.origin;
+
 export const Layout: FC<Props> = ({ children, title }) => {
 	return (
 		<>
@@ -15,6 +17,9 @@ export const Layout: FC<Props> = ({ children, title }) => {
 				<title>{title || ""}</title>
 				<meta name="author" content="" />
 				<meta name="description" content="Marvel Character Info" />
+				<meta property="og:title" content="Marvel" />
+				<meta property="og:description" content="Marvel" />
+				<meta property="og:image" content={`${origin}/imgs/marvel.jpg`} />
 			</Head>
 			<Navbar />
 
