@@ -6,6 +6,7 @@ import { marvelApi } from "../../api";
 import { Layout } from "../../components/layouts";
 import { MarvelCharacterResponse, Character } from "../../interfaces/marvelCharacterResponse.interface";
 import { storageFavs } from "../../utils";
+import { AxiosResponse } from "axios";
 
 const CharacterPage: NextPage<{ character: Character }> = ({ character }) => {
 	const [isInFavs, setInFavs] = useState(storageFavs.exists(character.id));
@@ -111,7 +112,7 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
 		paths: characterIds.map((id) => ({
 			params: { id },
 		})),
-		fallback: false,
+		fallback: "blocking",
 	};
 };
 
@@ -122,14 +123,30 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 		env: { MARVEL_API_TS = null, MARVEL_API_KEY = null, MARVEL_API_HASH = null },
 	} = process;
 
-	const { data } = await marvelApi.get<MarvelCharacterResponse>(
-		`/characters/${id}?ts=${MARVEL_API_TS}&apikey=${MARVEL_API_KEY}&hash=${MARVEL_API_HASH}&limit=30`
-	);
+	let reqdata: AxiosResponse<MarvelCharacterResponse> | null = null;
+
+	try {
+		reqdata = await marvelApi.get<MarvelCharacterResponse>(
+			`/characters/${id}?ts=${MARVEL_API_TS}&apikey=${MARVEL_API_KEY}&hash=${MARVEL_API_HASH}&limit=30`
+		);
+	} catch (error) {
+		reqdata = null;
+	}
+
+	if (!reqdata) {
+		return {
+			redirect: {
+				destination: "/",
+				permanent: false,
+			},
+		};
+	}
 
 	return {
 		props: {
-			character: data.data.results[0],
+			character: reqdata.data.data.results[0],
 		},
+		revalidate: 3600,
 	};
 };
 
