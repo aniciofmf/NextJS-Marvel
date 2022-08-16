@@ -20,6 +20,7 @@ export interface Comics {
 
 export interface ComicsItem {
 	name: string;
+	resourceURI: string;
 }
 
 export interface Thumbnail {
